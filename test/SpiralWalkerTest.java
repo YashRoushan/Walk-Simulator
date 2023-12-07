@@ -9,7 +9,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for the RandomWalker class.
+ * Unit tests for the SpiralWalker class.
  * These are quite basic as the randomness makes unit tests challenging.
  * See component tests with WalkSim.
  *
