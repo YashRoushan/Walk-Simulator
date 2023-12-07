@@ -1,0 +1,23 @@
+Random walker was already provided. The main aim is to make the RandomWalker(which performs random walking) as the parent element,
+and any other special walk which is demanded will be made as a child of the randomWalker class which will
+inherit most of the functionality from it and perform the specific walk by overriding the walk method.
+
+Refactoring 1: make a new class named SpiralWalker.java which will extend RandomWalker.java
+
+Refactoring 2: make the constructor and override the walk method for the SpiralWalker.java and import the rest of the methods
+from RandomWalker.java
+
+Refactoring 3: implement a separate method for SpiralWalker.java which performs function according to the
+lab pdf requirements
+
+Refactoring 4: make a new class named BreadCrumbWalker.java which will extend RandomWalker.java
+
+Refactoring 5: make the constructor and override the walk method for the BreadCrumbWalker.java and import the rest of the methods
+from RandomWalker.java
+
+Refactoring 6: implement a separate method for BreadCrumbWalker.java which performs function according to the
+lab pdf requirements
+
+Refactoring 7: handle the input format according to the instructions given(Extension 1).
+
+Refactoring 8: handle the output format according to the instructions given(Extension 4).
