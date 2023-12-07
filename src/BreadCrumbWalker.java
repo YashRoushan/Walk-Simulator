@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class BreadCrumbWalker extends RandomWalker{
@@ -39,6 +41,7 @@ public class BreadCrumbWalker extends RandomWalker{
      * @param Nsteps: the number of steps to simulate in the random walk
      * @return the path of the walk.
      */
+    @Override
     public ArrayList<Coordinate> walk(int Nsteps) {
         int N = Nsteps;
         Coordinate curPos = new Coordinate(START_X, START_Y);
@@ -58,5 +61,20 @@ public class BreadCrumbWalker extends RandomWalker{
             path.add(path.get(i));
         }
         return path;
+    }
+
+    // method to print the output of BreadCrumbWalker class
+    public void saveWalkToFile(String fname) throws IOException {
+        PrintWriter writer = new PrintWriter(fname);
+        String format = fname.substring(fname.length()-4,fname.length());
+        for (Coordinate coord : this.path) {
+            if(format.equals(".txt")){
+                writer.println(String.format("(%d, %d)", coord.x, coord.y));
+            }
+            else if(format.equals(".dat")){
+                writer.print(String.format(coord.x + " " +  coord.y + " "));
+            }
+        }
+        writer.close();
     }
 }

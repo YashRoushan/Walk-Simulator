@@ -22,9 +22,9 @@ public class WalkSim {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String exampleFile = "test_cases/example1.txt";
-        String outputFile = "output1.txt";
 
+//        prompting the user to input number of steps
+        System.out.println("Enter the number of steps: ");
         int nSteps = 0;
         while(true){
             try{
@@ -44,6 +44,8 @@ public class WalkSim {
 
 
         int walkerType = 0;
+
+        // prompting the user to input walker type
         System.out.println("Enter walker type");
         while(true){
             try{
@@ -55,11 +57,15 @@ public class WalkSim {
             }
             catch(InputMismatchException e){
                 System.out.println("Enter a valid integer");
-                sc.next();
+                sc.nextLine();
             }
 
         }
 
+        String exampleFile = "test_cases/example1.txt";
+
+        System.out.println("Enter the Output file: ");
+        String outputFile = sc.next();
 
         int stepDuration = 30; //controls the speed of the animation
 
@@ -99,26 +105,15 @@ public class WalkSim {
 
             // random walker will be the default method,
             // then the code will check for user prompt
-            RandomWalker walker = new RandomWalker(mc);
+            RandomWalker walker;
             if(walkerType == 0){
-                 walker = new RandomWalker(mc);
-                 while(true){
-                     try{
-                         String fileName = sc.next();
-                     }
-                     catch (InputMismatchException e){
-                         System.out.println("Enter a filename to read: (String)");
-                     }
-                     catch (NumberFormatException e){
-                         System.out.println("Enter correct filename");
-                     }
-                 }
+                  walker = new RandomWalker(mc);
             }
             else if(walkerType == 1){
-                 walker = new SpiralWalker(mc);
+                  walker = new SpiralWalker(mc);
             }
             else{
-                 walker = new BreadCrumbWalker(mc);
+                  walker = new BreadCrumbWalker(mc);
             }
 
 

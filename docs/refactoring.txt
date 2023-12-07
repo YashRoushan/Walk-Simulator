@@ -42,6 +42,24 @@ message: user will now be prompted to enter walkerType.
 
 Refactoring 11
 class: WalkSim.java
-Line: 102
+Line: 107
 method: user entry will decide walking type
 message: different input will run different run methods
+
+Refactoring 12
+class: RandomWalker.java
+Line: 75
+method: update the saveWalkToFile method
+message: updated the saveWalkToFile method to include .dat format too.
+
+Refactoring 13
+class: BreadCrumbWalker.java
+line: 67
+method: walk was not being saved to the file
+message: made a new method to save walk to file
+
+Refactoring 14
+class: SpiralWalker.java
+line: 103
+method: walk was not being saved to the file
+message: made a new method to save walk to file
