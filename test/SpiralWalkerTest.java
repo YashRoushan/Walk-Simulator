@@ -17,6 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * 1a. common case: ensure walk path is the correct length for number of steps.
  * 1b. edge case: walk 0 steps.
  * 1c: error case: walk negative steps.
+ *
+ * 2. saveWalkToFile()
+ * 2a. common case, with a correct file path.
+ * 2b. exceptional case, should throw IOException for bad file path.
  */
 public class SpiralWalkerTest {
 
@@ -59,7 +63,36 @@ public class SpiralWalkerTest {
         assertEquals(path.size(),0, "Expected empty path with negative steps.");
     }
 
+    @Test
+    void saveWalkToFile_Common() {
+        RandomWalker walker = new RandomWalker(testMC1);
+        String path = "_saveWalkToFile_Common_UnitTest.txt";
+        try {
+            File fp = new File(path);
+            assertFalse(fp.exists(), "Pre-condition: file should not yet exist.");
 
+            walker.saveWalkToFile(path);
+
+            assertTrue(fp.exists(), "File should exist after writing to it with no IOExeception.");
+            assertTrue(fp.delete(), "Expected to be able to delete file after writing to it.");
+        } catch (IOException e) {
+            fail("Exception occurred while trying to save walk to the file: " + path);
+        }
+    }
+
+    @Test
+    void saveWalkToFile_Exception() {
+        RandomWalker walker = new RandomWalker(testMC1);
+        String fakePath = "foobarbaddirectory" + File.separator
+                + "definitelynotarealdirectory123905" + File.separator
+                + "testFile.txt";
+        try {
+            walker.saveWalkToFile(fakePath);
+            fail("Should have failed trying to write to the fake path: " + fakePath);
+        } catch (IOException e) {
+            //Exception expected
+        }
+    }
 
 
 }
