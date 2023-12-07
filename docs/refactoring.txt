@@ -21,3 +21,27 @@ lab pdf requirements
 Refactoring 7: handle the input format according to the instructions given(Extension 1).
 
 Refactoring 8: handle the output format according to the instructions given(Extension 4).
+
+
+
+******* MAIN FILE *******
+
+Refactoring 9
+class: WalkSim.java
+Line: 27
+method: input for nSteps
+message: nSteps will now be prompted by the user, any wrong input(other than integers) will print warning messages
+
+
+Refactoring 10
+class: WalkSim.java
+Line: 46 - 59
+method: manual entry for walking type
+message: user will now be prompted to enter walkerType.
+
+
+Refactoring 11
+class: WalkSim.java
+Line: 102
+method: user entry will decide walking type
+message: different input will run different run methods

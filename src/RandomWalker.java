@@ -87,7 +87,7 @@ public class RandomWalker {
      * @return a coordinate encoding the difference between the Walker's destination position
      *         and its starting position for this step.
      */
-    private Coordinate getStepDirection() {
+    public Coordinate getStepDirection() {
         Coordinate step = new Coordinate(0,0);
         String state =  mc.getStateString();
         if (state.equals("N")) {

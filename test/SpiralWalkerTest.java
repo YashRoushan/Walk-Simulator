@@ -17,10 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * 1a. common case: ensure walk path is the correct length for number of steps.
  * 1b. edge case: walk 0 steps.
  * 1c: error case: walk negative steps.
- *
- * 2. saveWalkToFile()
- * 2a. common case, with a correct file path.
- * 2b. exceptional case, should throw IOException for bad file path.
  */
 public class SpiralWalkerTest {
 

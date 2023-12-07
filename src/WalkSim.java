@@ -1,6 +1,9 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * A main class for orchestrating a random walk.
@@ -17,12 +20,46 @@ public class WalkSim {
      *    [2]: the number of steps to simulate
      */
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
         String exampleFile = "test_cases/example1.txt";
         String outputFile = "output1.txt";
 
-        int nSteps = 200;
+        int nSteps = 0;
+        while(true){
+            try{
+                nSteps = sc.nextInt();
+                if(nSteps > 0){
+                    break;
+                }
+                else{
+                    System.out.println("Enter a positive value");
+                }
+            }
+            catch (InputMismatchException e){
+                System.out.println("Enter a valid integer");
+                sc.next();
+            }
+        }
+
+
         int walkerType = 0;
+        System.out.println("Enter walker type");
+        while(true){
+            try{
+                walkerType = sc.nextInt();
+                if(walkerType >= 0 && walkerType <= 2){
+                    break;
+                }
+                System.out.println("Enter correct value(Between 0 and 2 (included) )");
+            }
+            catch(InputMismatchException e){
+                System.out.println("Enter a valid integer");
+                sc.next();
+            }
+
+        }
+
 
         int stepDuration = 30; //controls the speed of the animation
 
@@ -58,7 +95,33 @@ public class WalkSim {
             assert T1.rows() == 4 : "Walker MarkovChain should have 4 states";
             System.out.println(T1.prettyString());
             MarkovChain mc = new MarkovChain(T1, cardinals);
+
+
+            // random walker will be the default method,
+            // then the code will check for user prompt
             RandomWalker walker = new RandomWalker(mc);
+            if(walkerType == 0){
+                 walker = new RandomWalker(mc);
+                 while(true){
+                     try{
+                         String fileName = sc.next();
+                     }
+                     catch (InputMismatchException e){
+                         System.out.println("Enter a filename to read: (String)");
+                     }
+                     catch (NumberFormatException e){
+                         System.out.println("Enter correct filename");
+                     }
+                 }
+            }
+            else if(walkerType == 1){
+                 walker = new SpiralWalker(mc);
+            }
+            else{
+                 walker = new BreadCrumbWalker(mc);
+            }
+
+
 
             ArrayList<Coordinate> theWalk = walker.walk(nSteps);
             walker.saveWalkToFile(outputFile);
